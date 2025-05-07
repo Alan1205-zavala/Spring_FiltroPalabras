@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "com.example.demo" {
+  class WordFilterApplication {
+    +main(args: String[]): void
+  }
+}
+
+package "com.example.demo.controller" {
+  class MessageController {
+    +showForm(): String
+    +processMessage(message: String, model: Model): String
+  }
+}
+
+package "com.example.demo.service" {
+  class WordFilterService {
+    -forbiddenWords: List<String>
+    -replacement: String
+    +filterMessage(message: String): String
+    +getForbiddenWords(): List<String>
+  }
+}
+
+package "com.example.demo.aspect" {
+  class WordFilterAspect {
+    -wordFilterService: WordFilterService
+    +filterMessage(joinPoint: JoinPoint, message: String): void
+  }
+}
+
+MessageController --> WordFilterService
+WordFilterAspect --> WordFilterService
+@enduml
