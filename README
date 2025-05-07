@@ -2,7 +2,27 @@
 
 ## Diagrama de Clases
 
-![Class Diagram](docs/images/class-diagram.svg)
+```mermaid
+classDiagram
+    class AuthApplication {
+        +main(args: String[]): void
+    }
+    
+    class AuthController {
+        +showLoginForm(): String
+        +processLogin(LoginRequest, Model): String
+    }
+    
+    class LoginRequest {
+        -username: String
+        -password: String
+        +getUsername() String
+        +getPassword() String
+    }
+    
+    AuthController --> LoginRequest
+    AuthController --> Model
+```
 
 ## Diagrama de Secuencia
 
